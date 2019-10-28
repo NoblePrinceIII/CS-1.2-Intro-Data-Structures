@@ -1,17 +1,20 @@
-import sys
 import random
+import sys
 
-mylist=[]
-# randomizes my list
-def random_word(mylist):
-    random.shuffle(mylist)
-    return mylist
+def rearrange(words_list):
+    """
+    rearranges given words from the user
+    """
+    for i, word in enumerate(words_list):
+        random_index = random.randint(0, len(words_list) - 1)
+        words_list[i] = words_list[random_index]
+        words_list[random_index] = word
 
-# adds word to list and then randomizes list
+    return words_list
+    # random.shuffle(word_list)
+    # return word_list
+
 if __name__ == '__main__':
-    for arg in range(1, len(sys.argv)):
-        mylist.append(sys.argv[arg])
-
-    mylist = random_word(mylist)
-
-    print(mylist)
+    word_list = sys.argv[1:]
+    rearrange(word_list)
+    print(' '.join(word_list))
