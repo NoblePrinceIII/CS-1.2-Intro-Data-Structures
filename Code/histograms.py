@@ -70,4 +70,3 @@ source_code = 'word.txt'
 histogram(source_code)
 unique_words(source_code)
 frequency('and', source_code)
-print()
