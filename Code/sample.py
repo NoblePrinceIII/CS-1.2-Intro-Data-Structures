@@ -11,13 +11,14 @@ def read(source_code):
     with open(source_code, 'r') as file:
         words = file.read()
         # makes sure words are alphabets
-        scrubbed_words= re.sub(r'[^a-zA-Z\s]', ' ' , words)
+        scrubbed_words= re.sub(r'[^a-zA-Z\-s]', ' ' , words)
         words = scrubbed_words.split()
         return words
 
 def random_word(words):
     '''randomizes words'''
     random_word = random.choice(words)
+    
     return random_word
 
 def sample_list(histogram):
