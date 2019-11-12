@@ -10,7 +10,6 @@ def open_file(words_file):
         scrubbed_words = re.sub(r'[^a-zA-Z\s]', '', words)
     return scrubbed_words.split(" ")
 
-
 def histogram_dict(words_file):
     '''Takes text argument and returns a histogram data structure in a dictionary form'''
     histogram = {}
@@ -40,8 +39,6 @@ def histogram_tuples(words_file):
         histogram.append(tuple(item))
 
     return histogram
-
-
 
 def unique_words(words_file):
     '''Takes a histogram argument and returns the total count of unique words in the histogram '''
