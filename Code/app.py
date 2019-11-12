@@ -1,15 +1,30 @@
-# from flask import Flask, url_for, render_template
-# from sample import *
-# from histograms import *
+from flask import Flask, render_template, request, redirect, url_for
+from sample import main_sample
+from histogram import histogram_dict
+# from pymongo import MongoClient
+# from bson.objectid import ObjectId
+# import os
 
-# app = Flask(__name__)
+app = Flask(__name__)
 
-# @app.route('/')
-# def index():
-#     words = book('words.txt')
-#     number_of_words = 10
-#     histograms = histogram(words)
-#     frequency = frequency(histogram, number_of_words)
+# host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/tweet-generator-sh')
+# client = MongoClient(host=f'{host}?retryWrites=false')
+# db = client.get_default_database()
+# tweet = db['tweet']
 
-#     return render_template('index.html')
+@app.route('/')
+def index():
+    """Return Homepage"""
+    text = 'test.txt'
+    sentence = main_sample(text)
+    return render_template('index.html', sentence=sentence)
 
+
+
+
+# histogram = histogram_dict(text)
+
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
