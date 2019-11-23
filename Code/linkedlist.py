@@ -58,15 +58,13 @@ class LinkedList(object):
 
    
     def is_empty(self):
-        """Return a boolean indicating whether this linked list is empty."""
+        """Runs at 0(1) in best and worst case scenarios"""
         return self.head is None
 
    
     def length(self):
-        """Return the length of this linked list by traversing its nodes.
-        TODO: Running time: O(n) because we will always have to loop through
-        every item in the list in order to count them all."""
-
+        """This method runs at 0(n) at best/worst case scenario"""
+ 
         count = 0
         node = self.head    
 
@@ -77,8 +75,8 @@ class LinkedList(object):
         return count
 
     def append(self, item):
-        """Insert the given item at the tail of this linked list.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        """Insert the given item at the tail of this linked list."""
+        """The best case scenario will run at 0(1) and the worst case scenario will run at 0(N)"""
        
         new_node = Node(item)
        
@@ -90,10 +88,8 @@ class LinkedList(object):
 
    
     def prepend(self, item):
-        """Insert the given item at the head of this linked list.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Create new node to hold given item
-       
+        """The best case scenario will run at 0(1), the worst case scenario is 0(N)"""
+  
         new_node = Node(item)
        
         if self.head is not None:
@@ -104,19 +100,18 @@ class LinkedList(object):
 
 
     def find(self, quality):
-            """Return an item from this linked list satisfying the given quality.
-            Best case running time: O(1) Item is the first item in the list will be a since look up?
-            Worst case running time: O(N) Item is last in list or not in list at all. Has to traverse entire linkedlist"""
+        """Best case running time: O(1) Item is the first item in the list will be a since look up?
+           Worst case running time: O(N) Item is last in list or not in list at all. Has to traverse entire linkedlist"""
             
-            node = self.head
+        node = self.head
 
-            while node is not None:
-                if quality(node.data) == True:
-                    return node.data
-                else:
-                    node = node.next
+        while node is not None:
+            if quality(node.data) == True:
+                return node.data
+            else:
+                node = node.next
 
-            return None
+        return None
 
 
     def delete(self, item):
@@ -126,7 +121,7 @@ class LinkedList(object):
        
         # starting points
         current_node = self.head
-        prior_node = None
+        previous_node = None
 
         # while node is not empty data 
         while current_node is not None:
@@ -134,28 +129,28 @@ class LinkedList(object):
             #node with item has been found
             if item == current_node.data:
 
-                #item we want to remove is at head
-                if prior_node is None:
-                    #make head next to node
+                #if iteam is head 
+                if previous_node is None:
+                    # make head next to node
                     self.head = current_node.next
 
-                    #head is also tail
+                    # head is tail
                     if current_node.next is None:
-                        self.tail = prior_node
-                #item we want to remove is at tail
+                        self.tail = previous_node
+                #item to remove is at tail
                 elif current_node.next is None:
-                    prior_node.next = None
-                    self.tail = prior_node
+                    previous_node.next = None
+                    self.tail = previous_node
 
                 #item we want to remove is not an edge case
                 else:
-                    #make previous node point to next node
-                    prior_node.next = current_node.next
+                    #make previous node to next node
+                    previous_node.next = current_node.next
 
                 return
             #item has not been found yet advance pointers
             else:
-                prior_node = current_node
+                previous_node = current_node
                 current_node = current_node.next
 
         raise ValueError(f'Item not found: {item}')
