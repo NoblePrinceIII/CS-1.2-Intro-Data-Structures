@@ -26,7 +26,8 @@ class HashTable(object):
 
     def keys(self):
         """Return a list of all keys in this hash table.
-        TODO: Running time: O(???) Why and under what conditions?"""
+            Running time: O(n) because all buckets and each value in bucket have to be accessed """
+       
         # Collect all keys in each bucket  
         all_keys = []
         
@@ -36,10 +37,11 @@ class HashTable(object):
        
         return all_keys
 
+
     def values(self):
-        """Return a list of all values in this hash table.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        
+        """Return a list of all keys in this hash table.
+            Running time: O(n) because all buckets and each value in bucket have to be accessed """
+       
         all_values = []
 
         # Loop through all buckets
@@ -52,9 +54,10 @@ class HashTable(object):
 
 
     def items(self):
-        """Return a list of all items (key-value pairs) in this hash table.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        """Return a list of all keys in this hash table.
+            Running time: O(n) because all buckets and each value in bucket have to be accessed """
        
+      
         # Collect all pairs of key-value entries in each bucket
         all_items = []
        
@@ -65,9 +68,9 @@ class HashTable(object):
 
 
     def length(self):
-        """Return the number of key-value entries by traversing its buckets.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        
+        """Return a list of all keys in this hash table.
+            Running time: O(n) because all buckets and each value in bucket have to be accessed """
+       
         count = 0
                
         # Loop through all buckets
@@ -81,20 +84,23 @@ class HashTable(object):
 
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        Running time: O(n) Worst Case its the last item in the bucket Best Case one item in bucket O(1)"""
 
+        
+        # Find bucket where given key belongs    
         bucket = self.buckets[hash(key) % len(self.buckets)]
         
-        # Find bucket where given key belongs
+        # Check if key-value entry exists in bucket
         for key_item, value in bucket.items():
                 if key_item == key:
                     return True
         
         return False
 
+
     def get(self, key):
         """Return the value associated with the given key, or raise KeyError.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        Running time: O(n) Worst Case its the last item in the bucket Best Case one item in bucket O(1)"""
   
         bucket = self.buckets[hash(key) % len(self.buckets)]
        
@@ -105,10 +111,11 @@ class HashTable(object):
 
         raise KeyError(f'Key not found: {key}')
 
+
     def set(self, key, value):
         """Insert or update the given key with its associated value.
-        TODO: Running time: O(???) Why and under what conditions?"""
-           # Find bucket where given key belongs    
+        Running time: O(n + n) -> O(n) find and replace both iterate through the list"""
+        
         bucket = self.buckets[hash(key) % len(self.buckets)]
 
         if self.contains(key):
@@ -121,11 +128,10 @@ class HashTable(object):
         else: 
             bucket.append((key, value))
 
-       
 
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
-        TODO: Running time: O(???) Why and under what conditions?"""   
+        Running time: O(n + n) -> O(n) find and replace both iterate through the list""" 
         
         bucket = self.buckets[hash(key) % len(self.buckets)]
         
